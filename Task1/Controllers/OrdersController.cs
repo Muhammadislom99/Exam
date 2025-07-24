@@ -22,16 +22,6 @@ public class OrdersController(ApplicationDbContext dbContext, IMapper mapper) : 
 
         var response1= mapper.Map<OrderResponse>(order);
         return Ok(response1);
-        
-        var response = new OrderResponse()
-        {
-            OrderDate = order.CreatedAt,
-            OrderItems = new List<OrderItemsResponse>()
-        };
-        response.OrderItems=order.Items.Select(i => new OrderItemsResponse()
-            { ProductName = i.ProductName, Price = i.Price }).ToList();
-
-        return Ok(response);
     }
 
     [HttpPost]
